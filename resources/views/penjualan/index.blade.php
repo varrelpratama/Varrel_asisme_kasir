@@ -24,7 +24,7 @@
                     <td>Rp {{ number_format($penjualan->TotalHarga, 0, ',', '.') }}</td>
                     <td>
                         <a href="{{ route('penjualan.invoice', $penjualan->PenjualanID) }}" class="btn btn-info btn-sm me-2">
-                            <i class="fas fa-file-invoice"></i> Faktur
+                            Faktur
                         </a>
                         <form action="{{ route('penjualan.destroy', $penjualan->PenjualanID) }}" method="POST"
                             style="display:inline;">
