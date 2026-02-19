@@ -8,7 +8,7 @@
     <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="/">Kasir pro</a>
@@ -19,13 +19,16 @@
                 @auth
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pelanggan.index') }}">Pelanggan</a>
+                            <a class="nav-link {{ request()->routeIs('pelanggan.*') ? 'active' : '' }}"
+                                href="{{ route('pelanggan.index') }}">Pelanggan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('penjualan.index') }}">Penjualan</a>
+                            <a class="nav-link {{ request()->routeIs('penjualan.*') ? 'active' : '' }}"
+                                href="{{ route('penjualan.index') }}">Penjualan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('barang.index') }}">Barang</a>
+                            <a class="nav-link {{ request()->routeIs('barang.*') ? 'active' : '' }}"
+                                href="{{ route('barang.index') }}">Barang</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
@@ -44,13 +47,19 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container mt-4 flex-grow-1">
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
         @yield('content')
     </div>
+
+    <footer class="bg-light text-center py-3">
+        <div class="container">
+            <small>&copy; {{ date('Y') }} Varrel- Kasir pro. All rights reserved.</small>
+        </div>
+    </footer>
 
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     @stack('scripts')
